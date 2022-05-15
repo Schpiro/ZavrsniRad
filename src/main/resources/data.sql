@@ -1,6 +1,7 @@
 delete from user;
 delete from authority;
 delete from user_authority;
+delete from event;
 
 insert into authority (authority_name)
 values
@@ -16,3 +17,9 @@ insert into user_authority (user_id,authority_id)
 values
 (1,1),
 (2,2);
+
+insert into event (creator_id, event_details, creation_date)
+values
+(2,'testni event','2022-05-02'),
+(2,'testni event 2','2022-05-02'),
+(2,'testni event 3','2022-05-02');
