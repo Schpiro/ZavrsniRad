@@ -29,6 +29,14 @@ public class User {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "USER_GROUP",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "id")}
+    )
+    @BatchSize(size = 20)
+    private Set<MessageGroup> groups = new HashSet<>();
 
     public User() {
     }
@@ -54,6 +62,10 @@ public class User {
 
     public Set<Authority> getAuthorities() {
         return authorities;
+    }
+
+    public Set<MessageGroup> getGroups() {
+        return groups;
     }
 }
 

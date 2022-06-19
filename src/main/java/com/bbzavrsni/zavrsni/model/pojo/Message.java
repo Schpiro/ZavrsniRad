@@ -20,7 +20,22 @@ public class Message {
     @ManyToOne(targetEntity = Message.class)
     @JoinColumn(name = "parent_message_id")
     private Message parentMessage;
-
+    @ManyToOne(targetEntity = User.class)
+    @JoinTable(
+            name = "message_recipient",
+            joinColumns = @JoinColumn(name = "message_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipient_id")
+    )
+    private User recipient;
+    /*
+    @ManyToOne(targetEntity = MessageGroup.class)
+    @JoinTable(
+            name = "message_recipient",
+            joinColumns = @JoinColumn(name = "message_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipient_group_id")
+    )
+    private MessageGroup recipientGroup;
+*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

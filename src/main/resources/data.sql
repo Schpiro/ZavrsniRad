@@ -23,3 +23,11 @@ values
 (2,'testni event','2022-05-02'),
 (2,'testni event 2','2022-05-02'),
 (2,'testni event 3','2022-05-02');
+
+insert into message (id,creator_id,message_body,create_date)
+values
+(1,1,'test message','2022-01-01');
+
+insert into message_recipient(recipient_id,message_id)
+values
+(1,1)
