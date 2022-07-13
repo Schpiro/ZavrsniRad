@@ -25,6 +25,7 @@ public class JwtServiceImpl implements JwtService {
 
     private static final Logger log = LoggerFactory.getLogger(JwtServiceImpl.class);
     private static final String AUTHORITIES_KEY = "authorities";
+    public static final String USER_ID_KEY = "USER_ID";
 
     @Value("${security.authentication.jwt.access-token-validity-seconds}")
     private Long accessTokenValiditySeconds;
@@ -59,6 +60,7 @@ public class JwtServiceImpl implements JwtService {
                 .setExpiration(new Date(expiration.toEpochMilli()))
                 .setIssuedAt(new Date())
                 .claim(AUTHORITIES_KEY, authorities)
+                .claim(USER_ID_KEY,user.getId())
                 .compact();
     }
 
@@ -97,9 +99,12 @@ public class JwtServiceImpl implements JwtService {
                 .map(SimpleGrantedAuthority::new)
                 .toList();
 
+        Integer userId = (Integer) claims.get(USER_ID_KEY);
+
         ApplicationUser applicationUser = new ApplicationUser();
         applicationUser.setUsername(claims.getSubject());
         applicationUser.setAuthorities(authorities);
+        applicationUser.setUID(userId);
 
         return applicationUser;
     }
