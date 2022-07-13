@@ -10,6 +10,7 @@ public class ApplicationUser implements Serializable {
     @Serial
     private static final long serialVersionUID = 8533039291044343363L;
 
+    private Integer UID;
     private String username;
     private String password;
     private List<SimpleGrantedAuthority> authorities;
@@ -36,5 +37,13 @@ public class ApplicationUser implements Serializable {
 
     public void setAuthorities(List<SimpleGrantedAuthority> authorities) {
         this.authorities = authorities;
+    }
+
+    public Integer getUID() {
+        return UID;
+    }
+
+    public void setUID(Integer UID) {
+        this.UID = UID;
     }
 }

@@ -1,7 +1,7 @@
 create table if not exists user
 (
     id       identity,
-    username varchar(10) not null,
+    username varchar(10) unique not null,
     password nvarchar    not null
 );
 
