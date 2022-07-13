@@ -1,8 +1,11 @@
 package com.bbzavrsni.zavrsni.model.pojo;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Data
 @Entity
 public class Authority {
 
@@ -13,13 +16,5 @@ public class Authority {
     @NotNull
     @Column(name = "authority_name", length = 50, nullable = false)
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }
