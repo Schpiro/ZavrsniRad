@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MessageRepository extends JpaRepository<Message,Long> {
-    List<Message> findAllByRecipient_Username(String recipient);
+    List<Message> findAllByRecipient_Recipient_Username(String recipient);
 
-    List<Message> findAllByRecipient_Groups(User recipient);
+    List<Message> findAllByRecipient_RecipientGroup_Id(Integer groupId);
 }

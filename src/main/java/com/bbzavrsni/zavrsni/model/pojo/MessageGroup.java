@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class MessageGroup {
+public class MessageGroup{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
