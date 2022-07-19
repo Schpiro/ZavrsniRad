@@ -18,7 +18,9 @@ import java.util.List;
 public class MessageController {
     private final MessageService messageService;
 
-    public MessageController(MessageService messageService){this.messageService = messageService;}
+    public MessageController(MessageService messageService){
+        this.messageService = messageService;
+    }
 
     @GetMapping
     public List<MessageDTO> getAllMessages(Principal principal){
@@ -28,7 +30,7 @@ public class MessageController {
 
     @RequestMapping("/group/{id}")
     @GetMapping
-    public List<MessageDTO> getAllMessagesByGroup(Principal principal, @PathVariable("id") Integer groupId){
+    public List<MessageDTO> getAllMessagesByGroup(Principal principal, @PathVariable("id") Long groupId){
         System.out.println("Fetching group ("+groupId+") messages for user"+((UserAuthentication) principal).getPrincipal().getUID());
         return messageService.findAllByGroup(groupId);
     }

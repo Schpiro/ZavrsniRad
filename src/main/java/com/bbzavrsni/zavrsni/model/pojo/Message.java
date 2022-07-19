@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Message {
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "creator_id")
     private User creator;
@@ -25,11 +25,10 @@ public class Message {
     @OneToOne(mappedBy = "message")
     private MessageRecipient recipient;
 
-    public Message(User creator, String messageBody, LocalDateTime createDate, Message parentMessage, MessageRecipient recipient) {
+    public Message(User creator, String messageBody, Message parentMessage) {
         this.creator = creator;
         this.messageBody = messageBody;
-        this.createDate = createDate;
+        this.createDate = LocalDateTime.now();
         this.parentMessage = parentMessage;
-        this.recipient = recipient;
     }
 }

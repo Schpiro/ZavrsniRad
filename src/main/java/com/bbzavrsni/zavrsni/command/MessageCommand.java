@@ -12,11 +12,11 @@ public class MessageCommand {
     @NotNull(message = "messageBody must not be empty")
     private String messageBody;
 
-    private Integer parentMessage;
+    private Long parentMessage;
 
-    private String recipient;
+    private Long recipient;
 
-    private String recipientGroup;
+    private Long recipientGroup;
 
     @AssertTrue
     private boolean recipientExists(){

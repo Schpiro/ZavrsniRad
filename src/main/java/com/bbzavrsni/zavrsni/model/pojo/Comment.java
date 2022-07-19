@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "creator_id")
     private User creator;

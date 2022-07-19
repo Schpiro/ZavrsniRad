@@ -11,7 +11,7 @@ import java.util.stream.DoubleStream;
 public interface MessageService {
     List<MessageDTO> findAllByUser(String username);
 
-    List<MessageDTO> findAllByGroup(Integer groupId);
+    List<MessageDTO> findAllByGroup(Long groupId);
 
-    Optional<MessageDTO> sendMessage(MessageCommand messageCommand, Integer userId);
+    Optional<MessageDTO> sendMessage(MessageCommand messageCommand, Long userId);
 }

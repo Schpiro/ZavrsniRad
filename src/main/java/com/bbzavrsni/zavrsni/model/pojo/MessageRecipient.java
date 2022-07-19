@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class MessageRecipient {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(targetEntity = Message.class)
@@ -24,4 +24,10 @@ public class MessageRecipient {
     @ManyToOne(targetEntity = MessageGroup.class)
     @JoinColumn(name = "recipient_group_id")
     private MessageGroup recipientGroup;
+
+    public MessageRecipient(Message message, User recipient, MessageGroup recipientGroup) {
+        this.message = message;
+        if(recipient!=null) this.recipient = recipient;
+        if(recipientGroup!=null) this.recipientGroup = recipientGroup;
+    }
 }

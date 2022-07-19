@@ -99,7 +99,7 @@ public class JwtServiceImpl implements JwtService {
                 .map(SimpleGrantedAuthority::new)
                 .toList();
 
-        Integer userId = (Integer) claims.get(USER_ID_KEY);
+        Long userId =  Long.valueOf((Integer)claims.get(USER_ID_KEY));
 
         ApplicationUser applicationUser = new ApplicationUser();
         applicationUser.setUsername(claims.getSubject());
