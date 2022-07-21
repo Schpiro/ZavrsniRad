@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("message")
 @CrossOrigin(origins = "http://localhost:4200")
 public class MessageController {
-    private static Logger logger = LogManager.getLogger(ZavrsniApplication.class);
+    private static final Logger logger = LogManager.getLogger(ZavrsniApplication.class);
 
     private final MessageService messageService;
 
