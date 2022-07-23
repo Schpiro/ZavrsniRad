@@ -1,5 +1,7 @@
 package com.bbzavrsni.zavrsni.model.dto;
 
+import com.bbzavrsni.zavrsni.util.GsonUtil;
+
 public class LoginDTO {
     private final String jwt;
 
@@ -13,8 +15,6 @@ public class LoginDTO {
 
     @Override
     public String toString() {
-        return "LoginDTO{" +
-                "jwt='" + jwt + '\'' +
-                '}';
+        return GsonUtil.toJson(this);
     }
 }

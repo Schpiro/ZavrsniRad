@@ -1,5 +1,6 @@
 package com.bbzavrsni.zavrsni.model.dto;
 
+import com.bbzavrsni.zavrsni.util.GsonUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,10 +15,6 @@ public class EventDTO {
 
     @Override
     public String toString() {
-        return "EventDTO{" +
-                "creator='" + creator + '\'' +
-                "details='" + details + '\'' +
-                "creationDate='" + creationDate + '\'' +
-                '}';
+        return GsonUtil.toJson(this);
     }
 }

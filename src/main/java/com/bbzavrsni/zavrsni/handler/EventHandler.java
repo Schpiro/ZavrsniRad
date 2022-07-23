@@ -1,6 +1,7 @@
 package com.bbzavrsni.zavrsni.handler;
 
 import com.bbzavrsni.zavrsni.model.pojo.WebsocketMessage;
+import com.bbzavrsni.zavrsni.util.GsonUtil;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -12,11 +13,10 @@ import java.util.Map;
 
 @Component
 public class EventHandler {
-    private static final Gson gson = new Gson();
     private static final Map<Integer, WebSocketSession> openSessions = new HashMap<>();
 
     public void handleMessage(WebSocketSession session, String message) throws IOException {
-        WebsocketMessage websocketMessage = gson.fromJson(message,WebsocketMessage.class);
+        WebsocketMessage websocketMessage = GsonUtil.fromJson(message,WebsocketMessage.class);
         String payloadMessage = websocketMessage.getMessage();
 
         switch (websocketMessage.getType()){
