@@ -1,5 +1,6 @@
-package com.bbzavrsni.zavrsni.websockets;
+package com.bbzavrsni.zavrsni.configuration;
 
+import com.bbzavrsni.zavrsni.handler.SocketHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -13,7 +14,6 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
     public WebSocketConfiguration(SocketHandler socketHandler) {
         this.socketHandler = socketHandler;
     }
-
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
