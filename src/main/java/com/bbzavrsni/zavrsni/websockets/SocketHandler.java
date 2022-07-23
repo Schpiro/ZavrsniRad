@@ -1,6 +1,5 @@
 package com.bbzavrsni.zavrsni.websockets;
 
-import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -9,19 +8,21 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
+    private final MessageHandler messageHandler;
+
+    public SocketHandler(MessageHandler messageHandler) {
+        this.messageHandler = messageHandler;
+    }
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message){
-        System.out.println(message.getPayload());
+        messageHandler.handleMessage(message.getPayload());
     }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.println("Connected client: " + session.getId());
-        String jsonString = new JSONObject()
-                .put("Vlad:", "Hello World!")
-                .toString();
-        session.sendMessage(new TextMessage(jsonString));
+        session.sendMessage(new TextMessage("hello"));
     }
 
     @Override
