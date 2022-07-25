@@ -32,8 +32,13 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<MessageDTO> findAllByUser(String username) {
-        return messageRepository.findAllByRecipient_Recipient_Username(username).stream().map(this::mapMessageToDTO).collect(Collectors.toList());
+    public List<MessageDTO> findAllByUser(Long userId) {
+        return messageRepository.findAllByRecipient_Recipient_Id(userId).stream().map(this::mapMessageToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MessageDTO> findAllBySender(Long userId, Long senderId) {
+        return messageRepository.findAllByRecipient_Recipient_IdAndCreator_Id(userId,senderId).stream().map(this::mapMessageToDTO).collect(Collectors.toList());
     }
 
     @Override

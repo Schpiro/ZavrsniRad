@@ -29,8 +29,15 @@ public class MessageController {
 
     @GetMapping
     public List<MessageDTO> getAllMessages(Principal principal){
+        logger.info(((UserAuthentication) principal).getPrincipal().getUID() + " fetching all messages for user.");
+        return messageService.findAllByUser(((UserAuthentication) principal).getPrincipal().getUID());
+    }
+
+    @RequestMapping("/{id}")
+    @GetMapping
+    public List<MessageDTO> getAllMessagesFromUser(Principal principal, @PathVariable("id") Long senderId){
         logger.info(((UserAuthentication) principal).getPrincipal().getUID());
-        return messageService.findAllByUser(((UserAuthentication) principal).getPrincipal().getUsername());
+        return messageService.findAllBySender(((UserAuthentication) principal).getPrincipal().getUID(),senderId);
     }
 
     @RequestMapping("/group/{id}")
