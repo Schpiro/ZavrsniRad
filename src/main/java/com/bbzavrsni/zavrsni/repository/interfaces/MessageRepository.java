@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface MessageRepository extends JpaRepository<Message,Long> {
+public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> findAllByRecipient_Recipient_Id(Long recipientId);
 
     List<Message> findAllByRecipient_Recipient_IdAndCreator_Id(Long recipientId, Long creator);

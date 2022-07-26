@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<MessageGroupDTO> findAllGroups(Long userId){
+    public List<MessageGroupDTO> findAllGroups(Long userId) {
         return messageGroupRepository.findAllByGroupParticipant_Id(userId).stream().map(this::mapGroupToDTO).collect(Collectors.toList());
     }
 

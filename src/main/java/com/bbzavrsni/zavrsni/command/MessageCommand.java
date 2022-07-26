@@ -19,7 +19,7 @@ public class MessageCommand {
     private Long recipientGroup;
 
     @AssertTrue
-    private boolean recipientExists(){
+    private boolean recipientExists() {
         return recipient != null || recipientGroup != null;
     }
 }

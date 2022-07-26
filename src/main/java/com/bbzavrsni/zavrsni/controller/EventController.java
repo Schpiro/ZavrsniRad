@@ -15,10 +15,12 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
 
-    public EventController(EventService eventService){this.eventService=eventService;}
+    public EventController(EventService eventService) {
+        this.eventService = eventService;
+    }
 
     @GetMapping
-    public List<EventDTO> getAllEvents(){
+    public List<EventDTO> getAllEvents() {
         return eventService.findAll();
     }
 

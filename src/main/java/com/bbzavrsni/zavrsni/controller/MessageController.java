@@ -23,34 +23,34 @@ public class MessageController {
 
     private final MessageService messageService;
 
-    public MessageController(MessageService messageService){
+    public MessageController(MessageService messageService) {
         this.messageService = messageService;
     }
 
     @GetMapping
-    public List<MessageDTO> getAllMessages(Principal principal){
+    public List<MessageDTO> getAllMessages(Principal principal) {
         logger.info(((UserAuthentication) principal).getPrincipal().getUID() + " fetching all messages for user.");
         return messageService.findAllByUser(((UserAuthentication) principal).getPrincipal().getUID());
     }
 
     @RequestMapping("/{id}")
     @GetMapping
-    public List<MessageDTO> getConversationWithUser(Principal principal, @PathVariable("id") Long senderId){
+    public List<MessageDTO> getConversationWithUser(Principal principal, @PathVariable("id") Long senderId) {
         logger.info(((UserAuthentication) principal).getPrincipal().getUID());
-        return messageService.getConversationWithUser(((UserAuthentication) principal).getPrincipal().getUID(),senderId);
+        return messageService.getConversationWithUser(((UserAuthentication) principal).getPrincipal().getUID(), senderId);
     }
 
     @RequestMapping("/group/{id}")
     @GetMapping
-    public List<MessageDTO> getAllMessagesByGroup(Principal principal, @PathVariable("id") Long groupId){
-        logger.info("Fetching group ("+groupId+") messages for user"+((UserAuthentication) principal).getPrincipal().getUID());
+    public List<MessageDTO> getAllMessagesByGroup(Principal principal, @PathVariable("id") Long groupId) {
+        logger.info("Fetching group (" + groupId + ") messages for user" + ((UserAuthentication) principal).getPrincipal().getUID());
         return messageService.findAllByGroup(groupId);
     }
 
     @PostMapping
     public ResponseEntity<MessageDTO> sendMessage(@Valid @RequestBody final MessageCommand messageCommand, Principal principal) {
         logger.info(principal);
-        return messageService.sendMessage(messageCommand, ((UserAuthentication)principal).getPrincipal().getUID())
+        return messageService.sendMessage(messageCommand, ((UserAuthentication) principal).getPrincipal().getUID())
                 .map(
                         MessageDTO -> ResponseEntity
                                 .status(HttpStatus.CREATED)

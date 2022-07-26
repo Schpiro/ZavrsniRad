@@ -22,7 +22,7 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findAll().stream().map(this::mapEventToDTO).collect(Collectors.toList());
     }
 
-    private EventDTO mapEventToDTO(final Event event){
-        return new EventDTO(event.getCreator().getUsername(),event.getEventDetails(),event.getCreationDate());
+    private EventDTO mapEventToDTO(final Event event) {
+        return new EventDTO(event.getCreator().getUsername(), event.getEventDetails(), event.getCreationDate());
     }
 }

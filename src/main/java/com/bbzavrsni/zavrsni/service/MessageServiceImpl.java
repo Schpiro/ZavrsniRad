@@ -40,7 +40,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public List<MessageDTO> getConversationWithUser(Long userId, Long senderId) {
-        return messageRepository.fetchConversation(userId,senderId).stream().map(this::mapMessageToDTO).sorted(Comparator.comparing(MessageDTO::getCreationDate)).collect(Collectors.toList());
+        return messageRepository.fetchConversation(userId, senderId).stream().map(this::mapMessageToDTO).sorted(Comparator.comparing(MessageDTO::getCreationDate)).collect(Collectors.toList());
     }
 
     @Override
@@ -50,25 +50,25 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Optional<MessageDTO> sendMessage(MessageCommand messageCommand, Long userId) {
-        Message sentMessage = messageRepository.save(mapCommandToMessage(messageCommand,userId));
-        messageRecipientRepository.save(mapMessageToRecipient(sentMessage, messageCommand.getRecipient(),messageCommand.getRecipientGroup()));
+        Message sentMessage = messageRepository.save(mapCommandToMessage(messageCommand, userId));
+        messageRecipientRepository.save(mapMessageToRecipient(sentMessage, messageCommand.getRecipient(), messageCommand.getRecipientGroup()));
         return Optional.of(mapMessageToDTO(sentMessage));
     }
 
-    private Message mapCommandToMessage(final MessageCommand messageCommand, Long userId){
+    private Message mapCommandToMessage(final MessageCommand messageCommand, Long userId) {
         return new Message(entityManager.getReference(User.class, userId),
-                            messageCommand.getMessageBody(),
-                            messageCommand.getParentMessage()!=null?entityManager.getReference(Message.class,messageCommand.getParentMessage()):null);
+                messageCommand.getMessageBody(),
+                messageCommand.getParentMessage() != null ? entityManager.getReference(Message.class, messageCommand.getParentMessage()) : null);
     }
 
-    private MessageRecipient mapMessageToRecipient(Message message, Long recipientId, Long recipientGroupId){
+    private MessageRecipient mapMessageToRecipient(Message message, Long recipientId, Long recipientGroupId) {
         return new MessageRecipient(message,
-                                    recipientId!=null ? entityManager.getReference(User.class, recipientId):null,
-                                    recipientGroupId!=null ? entityManager.getReference(MessageGroup.class,recipientGroupId):null);
+                recipientId != null ? entityManager.getReference(User.class, recipientId) : null,
+                recipientGroupId != null ? entityManager.getReference(MessageGroup.class, recipientGroupId) : null);
     }
 
     private MessageDTO mapMessageToDTO(final Message message) {
-        return new MessageDTO(message.getCreator().getUsername(),message.getCreateDate(),message.getMessageBody());
+        return new MessageDTO(message.getCreator().getUsername(), message.getCreateDate(), message.getMessageBody());
     }
 
 }

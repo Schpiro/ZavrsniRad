@@ -16,10 +16,10 @@ public class EventHandler {
     private static final Map<Integer, WebSocketSession> openSessions = new HashMap<>();
 
     public void handleMessage(WebSocketSession session, String message) throws IOException {
-        WebsocketMessage websocketMessage = GsonUtil.fromJson(message,WebsocketMessage.class);
+        WebsocketMessage websocketMessage = GsonUtil.fromJson(message, WebsocketMessage.class);
         String payloadMessage = websocketMessage.getMessage();
 
-        switch (websocketMessage.getType()){
+        switch (websocketMessage.getType()) {
             case CLIENT_ID -> addSession(session, Integer.valueOf(payloadMessage));
             case PRIVATE_MESSAGE -> sendRefreshRequest(Integer.valueOf(payloadMessage));
             case GROUP_MESSAGE -> System.out.println("todo");
@@ -30,11 +30,11 @@ public class EventHandler {
         openSessions.get(userId).sendMessage(new TextMessage("refresh pls"));
     }
 
-    private void addSession(WebSocketSession session, Integer userId){
-        openSessions.put(userId,session);
+    private void addSession(WebSocketSession session, Integer userId) {
+        openSessions.put(userId, session);
     }
 
-    public void closeConnection(WebSocketSession session){
+    public void closeConnection(WebSocketSession session) {
         openSessions.values().remove(session);
     }
 }

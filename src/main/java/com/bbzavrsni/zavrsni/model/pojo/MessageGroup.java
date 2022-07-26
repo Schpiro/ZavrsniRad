@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-public class MessageGroup{
+public class MessageGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

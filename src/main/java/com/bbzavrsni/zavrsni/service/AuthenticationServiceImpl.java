@@ -37,6 +37,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private boolean isMatchingPassword(String rawPassword, String encryptedPassword) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder.matches(rawPassword,encryptedPassword);
+        return bCryptPasswordEncoder.matches(rawPassword, encryptedPassword);
     }
 }

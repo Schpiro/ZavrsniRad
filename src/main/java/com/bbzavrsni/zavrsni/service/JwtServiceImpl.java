@@ -60,7 +60,7 @@ public class JwtServiceImpl implements JwtService {
                 .setExpiration(new Date(expiration.toEpochMilli()))
                 .setIssuedAt(new Date())
                 .claim(AUTHORITIES_KEY, authorities)
-                .claim(USER_ID_KEY,user.getId())
+                .claim(USER_ID_KEY, user.getId())
                 .compact();
     }
 
@@ -99,7 +99,7 @@ public class JwtServiceImpl implements JwtService {
                 .map(SimpleGrantedAuthority::new)
                 .toList();
 
-        Long userId =  Long.valueOf((Integer)claims.get(USER_ID_KEY));
+        Long userId = Long.valueOf((Integer) claims.get(USER_ID_KEY));
 
         ApplicationUser applicationUser = new ApplicationUser();
         applicationUser.setUsername(claims.getSubject());

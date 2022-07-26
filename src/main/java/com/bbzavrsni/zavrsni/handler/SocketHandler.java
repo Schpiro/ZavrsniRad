@@ -22,16 +22,16 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
-        eventHandler.handleMessage(session,message.getPayload());
+        eventHandler.handleMessage(session, message.getPayload());
     }
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session){
+    public void afterConnectionEstablished(WebSocketSession session) {
         logger.info("Connected client: " + session.getId());
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status){
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
         logger.info("Connection closed: " + session.getId());
         eventHandler.closeConnection(session);
     }

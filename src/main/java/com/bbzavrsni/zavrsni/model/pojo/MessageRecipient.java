@@ -27,7 +27,7 @@ public class MessageRecipient {
 
     public MessageRecipient(Message message, User recipient, MessageGroup recipientGroup) {
         this.message = message;
-        if(recipient!=null) this.recipient = recipient;
-        if(recipientGroup!=null) this.recipientGroup = recipientGroup;
+        if (recipient != null) this.recipient = recipient;
+        if (recipientGroup != null) this.recipientGroup = recipientGroup;
     }
 }

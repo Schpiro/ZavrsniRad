@@ -2,7 +2,7 @@ create table if not exists user
 (
     id       identity,
     username varchar(10) unique not null,
-    password nvarchar    not null
+    password nvarchar           not null
 );
 
 create table if not exists authority
@@ -38,8 +38,8 @@ create table if not exists message_group
 
 create table if not exists user_group
 (
-    id               identity,
-    user_id          number not null,
+    id       identity,
+    user_id  number not null,
     group_id number not null,
     constraint fk_user_group foreign key (user_id) references user (id),
     constraint fk_group foreign key (group_id) references message_group (id)
@@ -61,7 +61,7 @@ create table if not exists comment
     id                identity,
     creator_id        number   not null,
     comment_body      nvarchar not null,
-    creation_date       datetime not null,
+    creation_date     datetime not null,
     parent_comment_id number,
     constraint fk_comment_creator_id foreign key (creator_id) references user (id),
     constraint fk_comment_parent_id foreign key (parent_comment_id) references comment (id)
@@ -69,8 +69,8 @@ create table if not exists comment
 
 create table if not exists event
 (
-    id           identity,
-    creator_id   number   not null,
+    id            identity,
+    creator_id    number   not null,
     event_details nvarchar not null,
-    creation_date  datetime not null
+    creation_date datetime not null
 );

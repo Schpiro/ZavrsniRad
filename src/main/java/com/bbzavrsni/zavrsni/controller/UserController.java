@@ -18,7 +18,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("users")
-@CrossOrigin(origins = "http://localhost:4200")public class UserController {
+@CrossOrigin(origins = "http://localhost:4200")
+public class UserController {
     private static final Logger logger = LogManager.getLogger(ZavrsniApplication.class);
 
     private final UserService userService;
@@ -28,13 +29,13 @@ import java.util.List;
     }
 
     @GetMapping
-    public List<UserDTO> getAllMessages(Principal principal){
+    public List<UserDTO> getAllMessages(Principal principal) {
         logger.info(((UserAuthentication) principal).getPrincipal().getUID() + " fetching all users.");
         return userService.findAllUsers();
     }
 
     @GetMapping("/groups")
-    public List<MessageGroupDTO> getAllUserGroups(Principal principal){
+    public List<MessageGroupDTO> getAllUserGroups(Principal principal) {
         logger.info(((UserAuthentication) principal).getPrincipal().getUID() + " fetching all users groups.");
         return userService.findAllGroups(((UserAuthentication) principal).getPrincipal().getUID());
     }
