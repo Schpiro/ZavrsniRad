@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class UserDTO {
+public class MessageGroupDTO {
     private Long id;
-    private String username;
+    private String name;
 }

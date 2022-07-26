@@ -11,7 +11,7 @@ import java.util.stream.DoubleStream;
 public interface MessageService {
     List<MessageDTO> findAllByUser(Long userId);
 
-    List<MessageDTO> findAllBySender(Long userId, Long senderId);
+    List<MessageDTO> getConversationWithUser(Long userId, Long senderId);
 
     List<MessageDTO> findAllByGroup(Long groupId);
 

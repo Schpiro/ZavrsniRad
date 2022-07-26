@@ -6,6 +6,7 @@ import com.bbzavrsni.zavrsni.model.pojo.Message;
 import com.bbzavrsni.zavrsni.model.pojo.MessageGroup;
 import com.bbzavrsni.zavrsni.model.pojo.MessageRecipient;
 import com.bbzavrsni.zavrsni.model.pojo.User;
+import com.bbzavrsni.zavrsni.repository.interfaces.MessageGroupRepository;
 import com.bbzavrsni.zavrsni.repository.interfaces.MessageRecipientRepository;
 import com.bbzavrsni.zavrsni.repository.interfaces.MessageRepository;
 import com.bbzavrsni.zavrsni.service.interfaces.MessageService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,7 +27,7 @@ public class MessageServiceImpl implements MessageService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public MessageServiceImpl(MessageRepository messageRepository, MessageRecipientRepository messageRecipientRepository, EntityManager entityManager) {
+    public MessageServiceImpl(MessageRepository messageRepository, MessageRecipientRepository messageRecipientRepository, MessageGroupRepository messageGroupRepository, EntityManager entityManager) {
         this.messageRepository = messageRepository;
         this.messageRecipientRepository = messageRecipientRepository;
         this.entityManager = entityManager;
@@ -37,8 +39,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<MessageDTO> findAllBySender(Long userId, Long senderId) {
-        return messageRepository.findAllByRecipient_Recipient_IdAndCreator_Id(userId,senderId).stream().map(this::mapMessageToDTO).collect(Collectors.toList());
+    public List<MessageDTO> getConversationWithUser(Long userId, Long senderId) {
+        return messageRepository.fetchConversation(userId,senderId).stream().map(this::mapMessageToDTO).sorted(Comparator.comparing(MessageDTO::getCreationDate)).collect(Collectors.toList());
     }
 
     @Override

@@ -35,9 +35,9 @@ public class MessageController {
 
     @RequestMapping("/{id}")
     @GetMapping
-    public List<MessageDTO> getAllMessagesFromUser(Principal principal, @PathVariable("id") Long senderId){
+    public List<MessageDTO> getConversationWithUser(Principal principal, @PathVariable("id") Long senderId){
         logger.info(((UserAuthentication) principal).getPrincipal().getUID());
-        return messageService.findAllBySender(((UserAuthentication) principal).getPrincipal().getUID(),senderId);
+        return messageService.getConversationWithUser(((UserAuthentication) principal).getPrincipal().getUID(),senderId);
     }
 
     @RequestMapping("/group/{id}")
