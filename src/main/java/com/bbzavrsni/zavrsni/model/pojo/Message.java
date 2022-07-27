@@ -22,13 +22,20 @@ public class Message {
     @JoinColumn(name = "parent_message_id")
     private Message parentMessage;
 
-    @OneToOne(mappedBy = "message")
-    private MessageRecipient recipient;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "recipient_id")
+    private User recipient;
 
-    public Message(User creator, String messageBody, Message parentMessage) {
+    @ManyToOne(targetEntity = MessageGroup.class)
+    @JoinColumn(name = "recipient_group_id")
+    private MessageGroup recipientGroup;
+
+    public Message(User creator, String messageBody, Message parentMessage, User recipient, MessageGroup recipientGroup) {
         this.creator = creator;
         this.messageBody = messageBody;
         this.createDate = LocalDateTime.now();
         this.parentMessage = parentMessage;
+        this.recipient = recipient;
+        this.recipientGroup = recipientGroup;
     }
 }

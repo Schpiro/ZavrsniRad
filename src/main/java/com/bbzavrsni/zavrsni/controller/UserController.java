@@ -2,17 +2,17 @@ package com.bbzavrsni.zavrsni.controller;
 
 
 import com.bbzavrsni.zavrsni.ZavrsniApplication;
+import com.bbzavrsni.zavrsni.command.MessageCommand;
+import com.bbzavrsni.zavrsni.command.MessageGroupCommand;
 import com.bbzavrsni.zavrsni.model.dto.MessageGroupDTO;
 import com.bbzavrsni.zavrsni.model.dto.UserDTO;
 import com.bbzavrsni.zavrsni.model.pojo.UserAuthentication;
 import com.bbzavrsni.zavrsni.service.interfaces.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -38,5 +38,14 @@ public class UserController {
     public List<MessageGroupDTO> getAllUserGroups(Principal principal) {
         logger.info(((UserAuthentication) principal).getPrincipal().getUID() + " fetching all users groups.");
         return userService.findAllGroups(((UserAuthentication) principal).getPrincipal().getUID());
+    }
+
+    @RequestMapping("/groups")
+    @GetMapping
+    public MessageGroupDTO createMessageGroup(@Valid @RequestBody final MessageGroupCommand messageGroupCommand, Principal principal) {
+        logger.info("Creating new group '" + messageGroupCommand.getGroupName() +
+                    "' with users: " + messageGroupCommand.getGroupParticipants().toString() +
+                    ". User creating:" + ((UserAuthentication) principal).getPrincipal().getUID());
+        return userService.saveMessageGroup(messageGroupCommand);
     }
 }

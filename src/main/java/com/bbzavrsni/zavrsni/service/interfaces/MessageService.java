@@ -2,6 +2,7 @@ package com.bbzavrsni.zavrsni.service.interfaces;
 
 import com.bbzavrsni.zavrsni.command.MessageCommand;
 import com.bbzavrsni.zavrsni.model.dto.MessageDTO;
+import com.bbzavrsni.zavrsni.model.dto.MessageGroupDTO;
 import com.bbzavrsni.zavrsni.model.pojo.Message;
 
 import java.util.List;

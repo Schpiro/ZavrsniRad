@@ -1,5 +1,6 @@
 package com.bbzavrsni.zavrsni.service.interfaces;
 
+import com.bbzavrsni.zavrsni.command.MessageGroupCommand;
 import com.bbzavrsni.zavrsni.model.dto.MessageGroupDTO;
 import com.bbzavrsni.zavrsni.model.dto.UserDTO;
 
@@ -10,4 +11,5 @@ public interface UserService {
 
     List<MessageGroupDTO> findAllGroups(Long userId);
 
+    MessageGroupDTO saveMessageGroup(MessageGroupCommand messageGroupCommand);
 }

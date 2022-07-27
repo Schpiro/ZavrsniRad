@@ -2,8 +2,10 @@ package com.bbzavrsni.zavrsni.model.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -33,14 +35,9 @@ public class User {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "USER_GROUP",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "id")}
-    )
+    @ManyToMany(mappedBy = "groupParticipant")
     @BatchSize(size = 20)
-    private Set<MessageGroup> groups = new HashSet<>();
+    private Set<MessageGroup> groups = new java.util.LinkedHashSet<>();
 
     public User(Long id, String username, String password, Set<Authority> authorities) {
         this.id = id;
