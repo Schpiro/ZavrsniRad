@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private MessageGroupDTO mapGroupToDTO(final MessageGroup messageGroup) {
-        return new MessageGroupDTO(messageGroup.getId(), messageGroup.getName());
+        return new MessageGroupDTO(messageGroup.getId(), messageGroup.getName(),messageGroup.getGroupParticipant().stream().map(x->x.getId().longValue()).collect(Collectors.toList()));
     }
 
     private MessageGroup mapCommandToMessageGroup(MessageGroupCommand messageGroupCommand){
