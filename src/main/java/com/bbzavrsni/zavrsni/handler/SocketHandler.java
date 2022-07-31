@@ -22,6 +22,7 @@ public class SocketHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
+        logger.info(session.getId()+"sent a message:"+message.getPayload());
         eventHandler.handleMessage(session, message.getPayload());
     }
 

@@ -14,12 +14,14 @@ public class MessageCommand {
 
     private Long parentMessage;
 
-    private Long recipient;
+    private Long recipientId;
 
-    private Long recipientGroup;
+    private Long recipientGroupId;
+
+    private Long creator;
 
     @AssertTrue
     private boolean recipientExists() {
-        return recipient != null || recipientGroup != null;
+        return recipientId != null || recipientGroupId != null;
     }
 }

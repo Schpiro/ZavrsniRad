@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,12 +56,16 @@ public class MessageServiceImpl implements MessageService {
         return new Message(entityManager.getReference(User.class, userId),
                 messageCommand.getMessageBody(),
                 messageCommand.getParentMessage() != null ? entityManager.getReference(Message.class, messageCommand.getParentMessage()) : null,
-                messageCommand.getRecipient() != null ? entityManager.getReference(User.class, messageCommand.getRecipient()) : null,
-                messageCommand.getRecipientGroup() != null ? entityManager.getReference(MessageGroup.class, messageCommand.getRecipientGroup()) : null);
+                messageCommand.getRecipientId() != null ? entityManager.getReference(User.class, messageCommand.getRecipientId()) : null,
+                messageCommand.getRecipientGroupId() != null ? entityManager.getReference(MessageGroup.class, messageCommand.getRecipientGroupId()) : null);
     }
 
     private MessageDTO mapMessageToDTO(final Message message) {
-        return new MessageDTO(message.getCreator().getUsername(), message.getCreateDate(), message.getMessageBody());
+        return new MessageDTO(message.getCreator().getId(),
+                message.getRecipient() != null ? message.getRecipient().getId() : null,
+                message.getRecipientGroup() != null ? message.getRecipientGroup().getId() : null,
+                message.getCreateDate().toString(),
+                message.getMessageBody());
     }
 
 }

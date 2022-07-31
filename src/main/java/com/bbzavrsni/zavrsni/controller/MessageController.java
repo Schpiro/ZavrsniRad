@@ -3,7 +3,6 @@ package com.bbzavrsni.zavrsni.controller;
 import com.bbzavrsni.zavrsni.ZavrsniApplication;
 import com.bbzavrsni.zavrsni.command.MessageCommand;
 import com.bbzavrsni.zavrsni.model.dto.MessageDTO;
-import com.bbzavrsni.zavrsni.model.dto.MessageGroupDTO;
 import com.bbzavrsni.zavrsni.model.pojo.UserAuthentication;
 import com.bbzavrsni.zavrsni.service.interfaces.MessageService;
 import org.apache.logging.log4j.LogManager;
