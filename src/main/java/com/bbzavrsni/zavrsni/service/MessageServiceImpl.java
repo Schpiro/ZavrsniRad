@@ -64,6 +64,7 @@ public class MessageServiceImpl implements MessageService {
         return new MessageDTO(message.getCreator().getId(),
                 message.getRecipient() != null ? message.getRecipient().getId() : null,
                 message.getRecipientGroup() != null ? message.getRecipientGroup().getId() : null,
+                message.getRecipientGroup() != null ? message.getRecipientGroup().getGroupParticipant().stream().map(x -> x.getId()).collect(Collectors.toList()) : null,
                 message.getCreateDate().toString(),
                 message.getMessageBody());
     }
