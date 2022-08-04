@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("users")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://localhost:4200")
 public class UserController {
     private static final Logger logger = LogManager.getLogger(ZavrsniApplication.class);
 
