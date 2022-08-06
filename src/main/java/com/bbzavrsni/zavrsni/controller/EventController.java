@@ -1,6 +1,7 @@
 package com.bbzavrsni.zavrsni.controller;
 
 import com.bbzavrsni.zavrsni.ZavrsniApplication;
+import com.bbzavrsni.zavrsni.command.CommentCommand;
 import com.bbzavrsni.zavrsni.command.EventCommand;
 import com.bbzavrsni.zavrsni.model.dto.CommentDTO;
 import com.bbzavrsni.zavrsni.model.dto.EventDTO;
@@ -52,9 +53,23 @@ public class EventController {
                 );
     }
 
-    @GetMapping
-    @RequestMapping("/comments/{id}")
+    @GetMapping("/comments/{id}")
     public List<CommentDTO> getCommentsForEvent(@PathVariable("id") Long id) {
         return commentService.findCommentForEvent(id);
+    }
+
+    @PostMapping("/comments/{id}")
+    public ResponseEntity<CommentDTO> createComment(@Valid @RequestBody final CommentCommand commentCommand, @PathVariable("id") Long id) {
+        return commentService.createComment(commentCommand, id)
+                .map(
+                        CommentDTO -> ResponseEntity
+                                .status(HttpStatus.CREATED)
+                                .body(CommentDTO)
+                )
+                .orElseGet(
+                        () -> ResponseEntity
+                                .status(HttpStatus.CONFLICT)
+                                .build()
+                );
     }
 }

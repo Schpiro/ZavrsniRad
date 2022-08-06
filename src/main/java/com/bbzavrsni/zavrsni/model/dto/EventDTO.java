@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -12,7 +13,7 @@ public class EventDTO {
     private final Long id;
     private final String creator;
     private final String details;
-    private final Timestamp creationDate;
+    private final LocalDateTime creationDate;
 
     @Override
     public String toString() {

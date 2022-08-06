@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -14,5 +14,5 @@ public class EventCommand {
     @NotNull(message = "messageBody must not be empty")
     private String details;
     @NotNull(message = "messageBody must not be empty")
-    private Timestamp creationDate;
+    private LocalDateTime creationDate;
 }

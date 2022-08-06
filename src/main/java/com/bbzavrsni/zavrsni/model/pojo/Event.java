@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,7 +18,7 @@ public class Event {
     @JoinColumn(name = "creator_id")
     private User creator;
     private String eventDetails;
-    private Timestamp creationDate;
+    private LocalDateTime creationDate;
 
     @ManyToMany
     @JoinTable(name = "event_user",
@@ -31,7 +29,7 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Comment> comments;
 
-    public Event(User creator, String details, Timestamp creationDate) {
+    public Event(User creator, String details, LocalDateTime creationDate) {
         this.creator = creator;
         this.eventDetails = details;
         this.creationDate = creationDate;
