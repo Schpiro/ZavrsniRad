@@ -40,3 +40,8 @@ values (1, 1, 'test message', '2022-01-01', 1);
 
 insert into message (id, creator_id, message_body, create_date, recipient_group_id)
 values (2, 1, 'test group message', '2022-01-01', 1);
+
+insert into comment (event_id,creator_id,comment_body,creation_date)
+values (1,1,'o da ovo je komentar tuturutu', '2022-01-01'),
+       (2,2,'pipurutu', '2022-01-01'),
+       (3,3,'tuUUUUUUUUUU', '2022-01-01')

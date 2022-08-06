@@ -19,4 +19,7 @@ public class Comment {
     @ManyToOne(targetEntity = Comment.class)
     @JoinColumn(name = "parent_comment_id")
     private Comment parentComment;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
 }
