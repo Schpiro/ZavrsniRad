@@ -12,4 +12,6 @@ public interface UserService {
     List<MessageGroupDTO> findAllGroups(Long userId);
 
     MessageGroupDTO saveMessageGroup(MessageGroupCommand messageGroupCommand);
+
+    List<UserDTO> getUsersInGroup(Long groupId);
 }

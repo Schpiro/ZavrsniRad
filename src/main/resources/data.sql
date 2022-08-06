@@ -13,11 +13,14 @@ values ('ROLE_ADMIN'),
 
 insert into user (username, password)
 values ('admin', '$2a$12$idvVNoEhmDFHg9/my0c.juxD77hEID6AX1bc0YqRJXdpuNvuJE9b2'),
-       ('user', '$2a$12$zO0CNe/dZKlE13Kn4pntcuImw624HPvfyknHIO9R03..OYhuSKxMq');
+       ('user', '$2a$12$zO0CNe/dZKlE13Kn4pntcuImw624HPvfyknHIO9R03..OYhuSKxMq'),
+       ('user2', '$2a$12$zO0CNe/dZKlE13Kn4pntcuImw624HPvfyknHIO9R03..OYhuSKxMq');
+
 
 insert into user_authority (user_id, authority_id)
 values (1, 1),
-       (2, 2);
+       (2, 2),
+       (3, 2);
 
 insert into event (creator_id, event_details, creation_date)
 values (2, 'testni event', '2022-05-02'),
@@ -32,8 +35,8 @@ insert into user_group (user_id, group_id)
 values (1, 1),
        (2, 2);
 
-insert into message (id, creator_id, message_body, create_date,recipient_id)
-values (1, 1, 'test message', '2022-01-01',1);
+insert into message (id, creator_id, message_body, create_date, recipient_id)
+values (1, 1, 'test message', '2022-01-01', 1);
 
-insert into message (id, creator_id, message_body, create_date,recipient_group_id)
-values (2, 1, 'test group message', '2022-01-01',1);
+insert into message (id, creator_id, message_body, create_date, recipient_group_id)
+values (2, 1, 'test group message', '2022-01-01', 1);

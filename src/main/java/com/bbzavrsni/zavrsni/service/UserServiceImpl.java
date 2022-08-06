@@ -47,6 +47,11 @@ public class UserServiceImpl implements UserService {
         return mapGroupToDTO(messageGroup);
     }
 
+    @Override
+    public List<UserDTO> getUsersInGroup(Long groupId) {
+        return userRepository.findByGroups_Id(groupId).stream().map(this::mapUserToDTO).collect(Collectors.toList());
+    }
+
     private UserDTO mapUserToDTO(final User user) {
         return new UserDTO(user.getId(), user.getUsername());
     }

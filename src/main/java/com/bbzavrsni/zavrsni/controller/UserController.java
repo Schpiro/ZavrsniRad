@@ -40,6 +40,12 @@ public class UserController {
         return userService.findAllGroups(((UserAuthentication) principal).getPrincipal().getUID());
     }
 
+    @GetMapping("/groups/{id}")
+    public List<UserDTO> getUsersInGroup(Principal principal, @PathVariable("id") Long groupId) {
+        logger.info(((UserAuthentication) principal).getPrincipal().getUID() + " fetching all users in group.");
+        return userService.getUsersInGroup(groupId);
+    }
+
     @RequestMapping("/groups")
     @PostMapping
     public MessageGroupDTO createMessageGroup(@Valid @RequestBody final MessageGroupCommand messageGroupCommand, Principal principal) {
