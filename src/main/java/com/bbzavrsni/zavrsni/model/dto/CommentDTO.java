@@ -10,9 +10,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CommentDTO {
     private final Long id;
+    private final Long eventId;
     private final Long creatorId;
     private final String commentBody;
-    private final LocalDateTime creationDate;
+    private final String creationDate;
     private final Long parentCommentId;
 
     @Override
