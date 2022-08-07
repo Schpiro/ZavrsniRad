@@ -1,9 +1,9 @@
 package com.bbzavrsni.zavrsni.handler;
 
-import com.bbzavrsni.zavrsni.model.dto.MessageDTO;
-import com.bbzavrsni.zavrsni.model.dto.MessageGroupDTO;
+import com.bbzavrsni.zavrsni.model.dto.*;
 import com.bbzavrsni.zavrsni.model.enums.MessageTypes;
-import com.bbzavrsni.zavrsni.model.dto.WebsocketMessageDTO;
+import com.bbzavrsni.zavrsni.model.pojo.Comment;
+import com.bbzavrsni.zavrsni.model.pojo.Event;
 import com.bbzavrsni.zavrsni.util.GsonUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -27,6 +27,8 @@ public class EventHandler {
             case GROUP_MESSAGE -> sendPrivateMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageDTO.class), true);
             case NEW_GROUP -> newGroupCreated(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageGroupDTO.class));
             case OFFER,ANSWER,ICE_CANDIDATE-> sendRTCWebSocketMessage(websocketMessageDTO.getPayload(),websocketMessageDTO.getType(),websocketMessageDTO.getRecipientIds(),websocketMessageDTO.getSenderId());
+            case NEW_EVENT -> sendWebSocketMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), EventDTO.class),MessageTypes.NEW_EVENT,openSessions.keySet().stream().toList());
+            case NEW_COMMENT -> sendWebSocketMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), CommentDTO.class),MessageTypes.NEW_EVENT,openSessions.keySet().stream().toList());
         }
     }
 

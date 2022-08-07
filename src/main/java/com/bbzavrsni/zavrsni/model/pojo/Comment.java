@@ -25,10 +25,10 @@ public class Comment {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    public Comment(User creator, String commentBody, LocalDateTime creationDate, Comment parentComment, Event event) {
+    public Comment(User creator, String commentBody, Comment parentComment, Event event) {
         this.creator = creator;
         this.commentBody = commentBody;
-        this.creationDate = creationDate;
+        this.creationDate = LocalDateTime.now();
         this.parentComment = parentComment;
         this.event = event;
     }

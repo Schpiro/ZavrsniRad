@@ -37,13 +37,12 @@ public class EventServiceImpl implements EventService {
     }
 
     private EventDTO mapEventToDTO(final Event event) {
-        return new EventDTO(event.getId(),event.getCreator().getUsername(), event.getEventDetails(), event.getCreationDate());
+        return new EventDTO(event.getId(),event.getCreator().getUsername(), event.getEventDetails(), event.getCreationDate().toString());
     }
 
     private Event mapCommandToEvent(final EventCommand eventCommand) {
         return new Event(entityManager.getReference(User.class, eventCommand.getCreator()),
-                eventCommand.getDetails(),
-                eventCommand.getCreationDate()
+                eventCommand.getDetails()
         );
     }
 }

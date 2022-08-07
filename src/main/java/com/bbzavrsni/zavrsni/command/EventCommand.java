@@ -13,6 +13,4 @@ public class EventCommand {
     private Long creator;
     @NotNull(message = "messageBody must not be empty")
     private String details;
-    @NotNull(message = "messageBody must not be empty")
-    private LocalDateTime creationDate;
 }

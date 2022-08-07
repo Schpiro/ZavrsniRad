@@ -40,13 +40,13 @@ public class CommentServiceImpl implements CommentService {
     private Comment mapCommandToComment(CommentCommand commentCommand, Long id) {
         return new Comment(entityManager.getReference(User.class,commentCommand.getCreator()),
                 commentCommand.getCommentBody(),
-                commentCommand.getCreationDate(),
                 commentCommand.getParentComment()!=null?entityManager.getReference(Comment.class,commentCommand.getParentComment()):null,
                 entityManager.getReference(Event.class,id));
     }
 
     private CommentDTO mapCommentToDTO(Comment comment) {
-        return new CommentDTO(comment.getCreator().getId(),
+        return new CommentDTO(comment.getId(),
+                comment.getCreator().getId(),
                 comment.getCommentBody(),
                 comment.getCreationDate(),
                 comment.getParentComment()!=null? comment.getParentComment().getId():null);
