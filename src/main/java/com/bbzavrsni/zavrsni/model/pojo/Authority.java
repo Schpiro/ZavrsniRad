@@ -1,12 +1,15 @@
 package com.bbzavrsni.zavrsni.model.pojo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Authority {
 
     @Id
@@ -17,4 +20,7 @@ public class Authority {
     @Column(name = "authority_name", length = 50, nullable = false)
     private String name;
 
+    public Authority(String name) {
+        this.name = name;
+    }
 }

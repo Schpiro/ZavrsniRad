@@ -9,4 +9,5 @@ public interface AuthenticationService {
 
     Optional<LoginDTO> login(LoginCommand command);
 
+    Optional<LoginDTO> register(LoginCommand command);
 }

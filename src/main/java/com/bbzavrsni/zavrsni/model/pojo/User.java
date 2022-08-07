@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -42,6 +43,12 @@ public class User {
 
     public User(Long id, String username, String password, Set<Authority> authorities) {
         this.id = id;
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
+
+    public User(String username, String password, Set<Authority> authorities){
         this.username = username;
         this.password = password;
         this.authorities = authorities;
