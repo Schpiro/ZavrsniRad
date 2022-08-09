@@ -9,8 +9,14 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class EventCommand {
-    @NotNull(message = "messageBody must not be empty")
+    @NotNull(message = "creator must not be empty")
     private Long creator;
-    @NotNull(message = "messageBody must not be empty")
+    @NotNull(message = "title must not be empty")
+    private String title;
+    @NotNull(message = "details must not be empty")
     private String details;
+    @NotNull(message = "date must not be empty")
+    private String date;
+    @NotNull(message = "location must not be empty")
+    private String location;
 }

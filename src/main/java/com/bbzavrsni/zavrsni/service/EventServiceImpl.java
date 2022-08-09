@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,7 +52,9 @@ public class EventServiceImpl implements EventService {
 
     private Event mapCommandToEvent(final EventCommand eventCommand) {
         return new Event(entityManager.getReference(User.class, eventCommand.getCreator()),
-                eventCommand.getDetails()
-        );
+                eventCommand.getTitle(),
+                eventCommand.getLocation(),
+                LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(eventCommand.getDate())), ZoneId.of("UTC")),
+                eventCommand.getDetails());
     }
 }

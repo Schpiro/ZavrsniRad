@@ -32,9 +32,12 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private List<Comment> comments;
 
-    public Event(User creator, String details) {
+    public Event(User creator, String title, String location, LocalDateTime date, String eventDetails) {
         this.creator = creator;
-        this.eventDetails = details;
+        this.title = title;
+        this.location = location;
+        this.date = date;
+        this.eventDetails = eventDetails;
         this.creationDate = LocalDateTime.now();
     }
 }
