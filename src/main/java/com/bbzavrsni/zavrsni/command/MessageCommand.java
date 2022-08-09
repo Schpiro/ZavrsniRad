@@ -18,7 +18,7 @@ public class MessageCommand {
 
     private Long recipientGroupId;
 
-    private Long creator;
+    private Long creatorId;
 
     @AssertTrue
     private boolean recipientExists() {

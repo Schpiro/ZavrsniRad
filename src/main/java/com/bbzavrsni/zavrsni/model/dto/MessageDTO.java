@@ -10,7 +10,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class MessageDTO {
-    private final Long creator;
+    private final Long creatorId;
+    private final String creator;
     private final Long recipientId;
     private final Long recipientGroupId;
     private final List<Long> groupParticipantsIds;

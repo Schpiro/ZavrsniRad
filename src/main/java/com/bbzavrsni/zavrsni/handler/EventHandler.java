@@ -44,7 +44,7 @@ public class EventHandler {
             {
                 if (groupMessage) addAll(message.getGroupParticipantsIds());
                 else {
-                    add(message.getCreator());
+                    add(message.getCreatorId());
                     add(message.getRecipientId());
                 }
             }
