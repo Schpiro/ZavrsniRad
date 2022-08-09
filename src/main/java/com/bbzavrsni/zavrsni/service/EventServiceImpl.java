@@ -37,7 +37,13 @@ public class EventServiceImpl implements EventService {
     }
 
     private EventDTO mapEventToDTO(final Event event) {
-        return new EventDTO(event.getId(),event.getCreator().getUsername(), event.getEventDetails(), event.getCreationDate().toString());
+        return new EventDTO(event.getId(),
+                event.getTitle(),
+                event.getLocation(),
+                event.getDate().toString(),
+                event.getCreator().getUsername(),
+                event.getEventDetails(),
+                event.getCreationDate().toString());
     }
 
     private Event mapCommandToEvent(final EventCommand eventCommand) {

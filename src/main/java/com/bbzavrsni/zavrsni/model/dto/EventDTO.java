@@ -8,6 +8,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class EventDTO {
     private final Long id;
+    private final String title;
+    private final String location;
+    private final String date;
     private final String creator;
     private final String details;
     private final String creationDate;

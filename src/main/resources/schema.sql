@@ -53,6 +53,9 @@ create table if not exists event
 (
     id            identity,
     creator_id    number   not null,
+    title         nvarchar not null,
+    location      nvarchar not null,
+    date          datetime not null,
     event_details nvarchar not null,
     creation_date datetime not null
 );

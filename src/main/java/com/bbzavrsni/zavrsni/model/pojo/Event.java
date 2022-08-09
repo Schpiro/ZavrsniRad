@@ -17,6 +17,9 @@ public class Event {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "creator_id")
     private User creator;
+    private String title;
+    private String location;
+    private LocalDateTime date;
     private String eventDetails;
     private LocalDateTime creationDate;
 
