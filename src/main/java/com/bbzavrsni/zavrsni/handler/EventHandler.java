@@ -26,7 +26,7 @@ public class EventHandler {
             case PRIVATE_MESSAGE -> sendPrivateMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageDTO.class), false);
             case GROUP_MESSAGE -> sendPrivateMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageDTO.class), true);
             case NEW_GROUP -> newGroupCreated(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageGroupDTO.class));
-            case OFFER,ANSWER,ICE_CANDIDATE-> sendRTCWebSocketMessage(websocketMessageDTO.getPayload(),websocketMessageDTO.getType(),websocketMessageDTO.getRecipientIds(),websocketMessageDTO.getSenderId());
+            case OFFER,ANSWER,ICE_CANDIDATE, END_CALL-> sendRTCWebSocketMessage(websocketMessageDTO.getPayload(),websocketMessageDTO.getType(),websocketMessageDTO.getRecipientIds(),websocketMessageDTO.getSenderId());
             case NEW_EVENT -> sendWebSocketMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), EventDTO.class),MessageTypes.NEW_EVENT,openSessions.keySet().stream().toList());
             case NEW_COMMENT -> sendWebSocketMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), CommentDTO.class),MessageTypes.NEW_COMMENT,openSessions.keySet().stream().toList());
         }
