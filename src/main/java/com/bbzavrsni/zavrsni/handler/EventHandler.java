@@ -26,19 +26,19 @@ public class EventHandler {
             case PRIVATE_MESSAGE -> sendPrivateMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageDTO.class), false);
             case GROUP_MESSAGE -> sendPrivateMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageDTO.class), true);
             case NEW_GROUP -> newGroupCreated(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageGroupDTO.class));
-            case OFFER, ANSWER,ICE_CANDIDATE, END_CALL-> sendRTCWebSocketMessage(websocketMessageDTO.getPayload(),websocketMessageDTO.getType(),websocketMessageDTO.getRecipientIds(),websocketMessageDTO.getSenderId());
+            case OFFER, ANSWER,ICE_CANDIDATE, END_CALL-> sendRTCWebSocketMessage(websocketMessageDTO.getPayload(),websocketMessageDTO.getType(),websocketMessageDTO.getRecipientIds(),websocketMessageDTO.getSenderId(),websocketMessageDTO.getSenderName());
             case NEW_EVENT -> sendWebSocketMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), EventDTO.class),MessageTypes.NEW_EVENT,openSessions.keySet().stream().toList());
             case NEW_COMMENT -> sendWebSocketMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), CommentDTO.class),MessageTypes.NEW_COMMENT,openSessions.keySet().stream().toList());
         }
     }
 
-    private <T> void sendRTCWebSocketMessage(T message, MessageTypes messageTypes, List<Long> userIds, Long senderId) throws IOException {
+    private <T> void sendRTCWebSocketMessage(T message, MessageTypes messageTypes, List<Long> userIds, Long senderId, String senderName) throws IOException {
         for (Long userId : userIds) {
             if (openSessions.containsKey(userId))
-                openSessions.get(userId).sendMessage(new TextMessage(new WebsocketMessageDTO(messageTypes, message, senderId).toString()));
+                openSessions.get(userId).sendMessage(new TextMessage(new WebsocketMessageDTO(messageTypes, message, senderId, senderName).toString()));
             else
                 //Mozda poslati novi messagetype da handlea ako netko nije online?
-                openSessions.get(senderId).sendMessage(new TextMessage(new WebsocketMessageDTO(MessageTypes.END_CALL,"User is not online",Long.valueOf(0)).toString()));
+                openSessions.get(senderId).sendMessage(new TextMessage(new WebsocketMessageDTO(MessageTypes.END_CALL,"User is not online", 0L).toString()));
         }
     }
 
