@@ -47,6 +47,7 @@ public class CommentServiceImpl implements CommentService {
     private CommentDTO mapCommentToDTO(Comment comment) {
         return new CommentDTO(comment.getId(),
                 comment.getEvent().getId(),
+                comment.getCreator().getUsername(),
                 comment.getCreator().getId(),
                 comment.getCommentBody(),
                 comment.getCreationDate().toString(),
