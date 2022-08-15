@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class CommentCommand {
     @NotNull(message = "creator must not be empty")
-    private Long creator;
+    private Long creatorId;
     @NotNull(message = "commentBody must not be empty")
     private String commentBody;
     @Nullable

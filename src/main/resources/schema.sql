@@ -1,8 +1,9 @@
 create table if not exists user
 (
-    id       identity,
-    username varchar(10) unique not null,
-    password nvarchar           not null
+    id             identity,
+    username       varchar(10) unique not null,
+    image_location nvarchar,
+    password       nvarchar           not null
 );
 
 create table if not exists authority

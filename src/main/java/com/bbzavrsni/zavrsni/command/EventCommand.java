@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class EventCommand {
     @NotNull(message = "creator must not be empty")
-    private Long creator;
+    private Long creatorId;
     @NotNull(message = "title must not be empty")
     private String title;
     @NotNull(message = "details must not be empty")

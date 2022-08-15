@@ -38,7 +38,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     private Comment mapCommandToComment(CommentCommand commentCommand, Long id) {
-        return new Comment(entityManager.getReference(User.class,commentCommand.getCreator()),
+        return new Comment(entityManager.getReference(User.class,commentCommand.getCreatorId()),
                 commentCommand.getCommentBody(),
                 commentCommand.getParentComment()!=null?entityManager.getReference(Comment.class,commentCommand.getParentComment()):null,
                 entityManager.getReference(Event.class,id));

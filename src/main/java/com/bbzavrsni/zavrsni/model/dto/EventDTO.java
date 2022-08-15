@@ -12,6 +12,7 @@ public class EventDTO {
     private final String location;
     private final String date;
     private final String creator;
+    private final Long creatorId;
     private final String details;
     private final String creationDate;
 
