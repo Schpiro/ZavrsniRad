@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDTO> getAllMessages(Principal principal) {
+    public List<UserDTO> getAllUsers(Principal principal) {
         logger.info(((UserAuthentication) principal).getPrincipal().getUID() + " fetching all users.");
         return userService.findAllUsers();
     }
