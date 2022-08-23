@@ -1,6 +1,5 @@
 package com.bbzavrsni.zavrsni.model.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,8 +18,4 @@ public class Authority {
     @NotNull
     @Column(name = "authority_name", length = 50, nullable = false)
     private String name;
-
-    public Authority(String name) {
-        this.name = name;
-    }
 }
