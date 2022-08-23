@@ -28,7 +28,6 @@ create table if not exists message_group
 
 create table if not exists user_group
 (
-    id       identity,
     user_id  number not null,
     group_id number not null,
     constraint fk_user_group foreign key (user_id) references user (id),
@@ -47,7 +46,7 @@ create table if not exists message
     constraint fk_creator_id foreign key (creator_id) references user (id),
     constraint fk_parent_id foreign key (parent_message_id) references message (id),
     constraint fk_recipient_id foreign key (recipient_id) references user (id),
-    constraint fk_recipient_group_id foreign key (recipient_group_id) references user_group (id)
+    constraint fk_recipient_group_id foreign key (recipient_group_id) references message_group (id)
 );
 
 create table if not exists event
@@ -58,7 +57,8 @@ create table if not exists event
     location      nvarchar not null,
     date          datetime not null,
     event_details nvarchar not null,
-    creation_date datetime not null
+    creation_date datetime not null,
+    constraint fk_event_creator_id foreign key (creator_id) references user (id)
 );
 
 create table if not exists comment
