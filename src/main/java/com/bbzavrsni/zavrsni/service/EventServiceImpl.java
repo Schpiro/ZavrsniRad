@@ -46,12 +46,13 @@ public class EventServiceImpl implements EventService {
                 event.getLocation(),
                 event.getDate().toString(),
                 event.getCreator().getUsername(),
+                event.getCreator().getId(),
                 event.getEventDetails(),
                 event.getCreationDate().toString());
     }
 
     private Event mapCommandToEvent(final EventCommand eventCommand) {
-        return new Event(entityManager.getReference(User.class, eventCommand.getCreator()),
+        return new Event(entityManager.getReference(User.class, eventCommand.getCreatorId()),
                 eventCommand.getTitle(),
                 eventCommand.getLocation(),
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(eventCommand.getDate())), ZoneId.of("UTC")),
