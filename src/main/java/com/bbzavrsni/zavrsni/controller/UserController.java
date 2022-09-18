@@ -46,8 +46,7 @@ public class UserController {
         return userService.getUsersInGroup(groupId);
     }
 
-    @RequestMapping("/groups")
-    @PostMapping
+    @PostMapping("/groups")
     public MessageGroupDTO createMessageGroup(@Valid @RequestBody final MessageGroupCommand messageGroupCommand, Principal principal) {
         logger.info("Creating new group '" + messageGroupCommand.getGroupName() +
                     "' with users: " + messageGroupCommand.getGroupParticipants().toString() +
