@@ -33,15 +33,13 @@ public class MessageController {
         return messageService.findAllByUser(((UserAuthentication) principal).getPrincipal().getUID());
     }
 
-    @RequestMapping("/{id}")
-    @GetMapping
+    @GetMapping("/{id}")
     public List<MessageDTO> getConversationWithUser(Principal principal, @PathVariable("id") Long senderId) {
         logger.info(((UserAuthentication) principal).getPrincipal().getUID());
         return messageService.getConversationWithUser(((UserAuthentication) principal).getPrincipal().getUID(), senderId);
     }
 
-    @RequestMapping("/group/{id}")
-    @GetMapping
+    @GetMapping("/group/{id}")
     public List<MessageDTO> getAllMessagesByGroup(Principal principal, @PathVariable("id") Long groupId) {
         logger.info("Fetching group (" + groupId + ") messages for user" + ((UserAuthentication) principal).getPrincipal().getUID());
         return messageService.findAllByGroup(groupId);
