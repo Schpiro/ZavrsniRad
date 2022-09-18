@@ -5,10 +5,9 @@ import com.bbzavrsni.zavrsni.model.dto.EventDTO;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.DoubleStream;
 
 public interface EventService {
     List<EventDTO> findAll();
 
-    Optional<EventDTO> createEvent(EventCommand eventCommand, Long uid);
+    Optional<EventDTO> createEvent(EventCommand eventCommand);
 }

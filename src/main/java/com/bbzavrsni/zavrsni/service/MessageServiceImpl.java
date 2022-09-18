@@ -21,7 +21,7 @@ public class MessageServiceImpl implements MessageService {
     private final MessageRepository messageRepository;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public MessageServiceImpl(MessageRepository messageRepository, EntityManager entityManager) {
         this.messageRepository = messageRepository;
@@ -62,7 +62,7 @@ public class MessageServiceImpl implements MessageService {
                 message.getCreator().getUsername(),
                 message.getRecipient() != null ? message.getRecipient().getId() : null,
                 message.getRecipientGroup() != null ? message.getRecipientGroup().getId() : null,
-                message.getRecipientGroup() != null ? message.getRecipientGroup().getGroupParticipant().stream().map(x -> x.getId()).collect(Collectors.toList()) : null,
+                message.getRecipientGroup() != null ? message.getRecipientGroup().getGroupParticipant().stream().map(User::getId).collect(Collectors.toList()) : null,
                 message.getCreateDate().toString(),
                 message.getMessageBody());
     }

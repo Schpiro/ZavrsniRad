@@ -23,7 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public AuthenticationServiceImpl(JwtService jwtService, UserRepository userRepository, EntityManager entityManager) {
         this.jwtService = jwtService;

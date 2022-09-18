@@ -22,7 +22,7 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public EventServiceImpl(EventRepository eventRepository, EntityManager entityManager) {
         this.eventRepository = eventRepository;
@@ -35,7 +35,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Optional<EventDTO> createEvent(EventCommand eventCommand, Long uid) {
+    public Optional<EventDTO> createEvent(EventCommand eventCommand) {
         return Optional.of(mapEventToDTO(eventRepository.save(mapCommandToEvent(eventCommand))));
     }
 

@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     private final MessageGroupRepository messageGroupRepository;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public UserServiceImpl(UserRepository userRepository, MessageGroupRepository messageGroupRepository, EntityManager entityManager) {
         this.userRepository = userRepository;
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private MessageGroupDTO mapGroupToDTO(final MessageGroup messageGroup) {
-        return new MessageGroupDTO(messageGroup.getId(), messageGroup.getName(),messageGroup.getGroupParticipant().stream().map(x->x.getId().longValue()).collect(Collectors.toList()));
+        return new MessageGroupDTO(messageGroup.getId(), messageGroup.getName(),messageGroup.getGroupParticipant().stream().map(User::getId).collect(Collectors.toList()));
     }
 
     private MessageGroup mapCommandToMessageGroup(MessageGroupCommand messageGroupCommand){

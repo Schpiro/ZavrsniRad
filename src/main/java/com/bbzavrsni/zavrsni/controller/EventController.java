@@ -40,7 +40,7 @@ public class EventController {
     @PostMapping
     public ResponseEntity<EventDTO> createEvent(@Valid @RequestBody final EventCommand eventCommand, Principal principal) {
         logger.info(principal);
-        return eventService.createEvent(eventCommand, ((UserAuthentication) principal).getPrincipal().getUID())
+        return eventService.createEvent(eventCommand)
                 .map(
                         EventDTO -> ResponseEntity
                                 .status(HttpStatus.CREATED)

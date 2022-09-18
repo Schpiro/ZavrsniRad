@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public CommentServiceImpl(CommentRepository commentRepository, EntityManager entityManager) {
         this.commentRepository = commentRepository;
