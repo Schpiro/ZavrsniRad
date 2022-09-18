@@ -2,7 +2,6 @@ package com.bbzavrsni.zavrsni.controller;
 
 
 import com.bbzavrsni.zavrsni.ZavrsniApplication;
-import com.bbzavrsni.zavrsni.command.MessageCommand;
 import com.bbzavrsni.zavrsni.command.MessageGroupCommand;
 import com.bbzavrsni.zavrsni.model.dto.MessageGroupDTO;
 import com.bbzavrsni.zavrsni.model.dto.UserDTO;
