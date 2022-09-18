@@ -18,7 +18,7 @@ public class MessageGroup {
     @JoinTable(name = "USER_GROUP",
             joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    private List<User> groupParticipant = new java.util.ArrayList<>();
+    private List<User> groupParticipant;
 
     public MessageGroup(String name, List<User> groupParticipant) {
         this.name = name;

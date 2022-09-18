@@ -7,7 +7,6 @@ import com.bbzavrsni.zavrsni.model.pojo.User;
 import com.bbzavrsni.zavrsni.repository.interfaces.UserRepository;
 import com.bbzavrsni.zavrsni.service.interfaces.AuthenticationService;
 import com.bbzavrsni.zavrsni.service.interfaces.JwtService;
-import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,16 +52,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return Optional.of(
                     new LoginDTO(jwtService.createJwt(user)
                     ));
-        }catch (Exception exception){
+        } catch (Exception exception) {
             return Optional.empty();
-        }//Treba handleat ako vec postoji user
-
+        }
     }
 
     private User mapCommandToUser(LoginCommand command) {
         return new User(command.getUsername(),
                 bCryptPasswordEncoder.encode(command.getPassword()),
-                Collections.singleton(entityManager.getReference(Authority.class, Long.valueOf(2))));
+                Collections.singleton(entityManager.getReference(Authority.class, 2L)));
     }
 
     private boolean isMatchingPassword(String rawPassword, String encryptedPassword) {
