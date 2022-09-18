@@ -2,8 +2,6 @@ package com.bbzavrsni.zavrsni.handler;
 
 import com.bbzavrsni.zavrsni.model.dto.*;
 import com.bbzavrsni.zavrsni.model.enums.MessageTypes;
-import com.bbzavrsni.zavrsni.model.pojo.Comment;
-import com.bbzavrsni.zavrsni.model.pojo.Event;
 import com.bbzavrsni.zavrsni.util.GsonUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -20,7 +18,7 @@ public class EventHandler {
     private static final Map<Long, WebSocketSession> openSessions = new HashMap<>();
 
     public void handleMessage(WebSocketSession session, String message) throws IOException {
-        WebsocketMessageDTO websocketMessageDTO = GsonUtil.fromJson(message, WebsocketMessageDTO.class);
+        WebSocketMessageDTO websocketMessageDTO = GsonUtil.fromJson(message, WebSocketMessageDTO.class);
         switch (websocketMessageDTO.getType()) {
             case CLIENT_ID -> addSession(session, GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), Long.class));
             case PRIVATE_MESSAGE -> sendPrivateMessage(GsonUtil.fromJson(websocketMessageDTO.getPayload().toString(), MessageDTO.class), false);
@@ -35,10 +33,9 @@ public class EventHandler {
     private <T> void sendRTCWebSocketMessage(T message, MessageTypes messageTypes, List<Long> userIds, Long senderId, String senderName) throws IOException {
         for (Long userId : userIds) {
             if (openSessions.containsKey(userId))
-                openSessions.get(userId).sendMessage(new TextMessage(new WebsocketMessageDTO(messageTypes, message, senderId, senderName).toString()));
+                openSessions.get(userId).sendMessage(new TextMessage(new WebSocketMessageDTO(messageTypes, message, senderId, senderName).toString()));
             else
-                //Mozda poslati novi messagetype da handlea ako netko nije online?
-                openSessions.get(senderId).sendMessage(new TextMessage(new WebsocketMessageDTO(MessageTypes.END_CALL,"User is not online", 0L).toString()));
+                openSessions.get(senderId).sendMessage(new TextMessage(new WebSocketMessageDTO(MessageTypes.END_CALL,"User is not online", 0L).toString()));
         }
     }
 
@@ -63,7 +60,7 @@ public class EventHandler {
     private <T> void sendWebSocketMessage(T message, MessageTypes messageTypes, List<Long> userIds) throws IOException {
         for (Long userId : userIds) {
             if (openSessions.containsKey(userId))
-                openSessions.get(userId).sendMessage(new TextMessage(new WebsocketMessageDTO(messageTypes, message).toString()));
+                openSessions.get(userId).sendMessage(new TextMessage(new WebSocketMessageDTO(messageTypes, message).toString()));
         }
     }
 
