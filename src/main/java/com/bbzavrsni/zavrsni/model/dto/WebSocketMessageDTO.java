@@ -9,24 +9,23 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class WebsocketMessageDTO {
+public class WebSocketMessageDTO {
     private MessageTypes type;
     private Object payload;
     private Long senderId;
     private List<Long> recipientIds;
     private String senderName;
 
-    public  WebsocketMessageDTO(MessageTypes messageTypes, Object message) {
+    public WebSocketMessageDTO(MessageTypes messageTypes, Object message) {
         this.type=messageTypes;
         this.payload=message;
     }
-    public WebsocketMessageDTO(MessageTypes messageTypes, Object message, Long senderId) {
+    public WebSocketMessageDTO(MessageTypes messageTypes, Object message, Long senderId) {
         this.type=messageTypes;
         this.payload=message;
         this.senderId=senderId;
     }
-
-    public WebsocketMessageDTO(MessageTypes messageTypes, Object message, Long senderId, String senderName) {
+    public WebSocketMessageDTO(MessageTypes messageTypes, Object message, Long senderId, String senderName) {
         this.type=messageTypes;
         this.payload=message;
         this.senderId=senderId;
