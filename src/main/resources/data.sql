@@ -37,13 +37,13 @@ values (1, 1),
        (10, 2);
 
 insert into event (creator_id, title, location, date, event_details, creation_date)
-values (2, '1', 'RIJEKA', '2022-05-02', 'testni event', '2022-05-02'),
-       (2, '2', 'ZAGREB', '2022-05-02', 'testni event 2', '2022-05-02'),
-       (2, '3', 'LOVRAN', '2022-05-02', 'testni event 3', '2022-05-02');
+values (2, 'D&D night', 'Zagreb', '2022-09-26T18:00:00', 'Roll initiative', '2022-05-02'),
+       (5, 'Experimental Techno', 'Rijeka', '2022-10-10T22:00:00', 'Upad 50 kn, klub Život', '2022-05-02'),
+       (7, 'Beach party', 'Lovran', '2022-10-31T16:00:00', 'Vrijeme je za kupanje', '2022-05-02');
 
 insert into message_group (name)
-values ('prva testna grupa'),
-       ('druga testna grupa');
+values ('Grupa #1'),
+       ('Grupa #2');
 
 insert into user_group (user_id, group_id)
 values (1, 1),
@@ -52,27 +52,27 @@ values (1, 1),
        (2, 1);
 
 insert into message (creator_id, message_body, create_date, recipient_id)
-values (1, 'test message', '2022-01-01', 2),
-       (2, 'test message', '2022-01-01', 1),
-       (1, 'old test message', '2021-01-01', 2),
-       (1, 'old test message', '2021-01-01', 3),
-       (1, 'old test message', '2021-01-01', 2),
-       (1, 'old test message', '2021-01-01', 3),
-       (3, 'old test message', '2021-01-01', 2),
-       (3, 'old test message', '2021-01-01', 1),
-       (3, 'old test message', '2021-01-01', 2),
-       (3, 'old test message', '2021-01-01', 2);
+values (1, 'Mogao sam stavit lorem ipsum', '2022-01-01T15:01:17', 2),
+       (2, 'Trebao si', '2022-01-02T17:22:19', 1),
+       (1, 'Ovo stvarno radi', '2022-01-02T18:43:11', 2),
+       (1, 'Test', '2022-01-02T19:34:13', 3),
+       (1, 'Tko bi rekao', '2022-01-03T10:12:14', 2),
+       (1, '12345', '2022-01-03T21:52:15', 3),
+       (3, 'Mogao sam stavit lorem ipsum', '2022-01-03T22:25:18', 2),
+       (3, 'old test message', '2022-01-04T06:14:11', 1),
+       (3, 'old test message', '2022-01-04T07:34:12', 2),
+       (3, 'old test message', '2022-01-04T23:12:13', 2);
 
 insert into message (creator_id, message_body, create_date, recipient_group_id)
-values (1, 'test group message', '2022-01-01', 1),
-       (2, 'test group message od usera', '2022-01-01', 1),
-       (1, '2. test group message', '2022-01-01', 2),
-       (3, '2. test group message od usera', '2022-01-01', 2),
-       (2, 'test group message', '2021-01-01', 1),
-       (2, '2. test group message', '2021-01-01', 2),
-       (3, '2. test group message od usera', '2021-01-01', 2);;
+values (1, 'Hey yall', '2022-01-01T15:27:10', 1),
+       (2, 'test group message od usera', '2022-01-01T15:32:14', 1),
+       (1, '2. test group message', '2022-01-02T15:43:21', 2),
+       (3, '2. test group message od usera', '2022-01-02T15:55:51', 2),
+       (4, 'Bok moje ime je Matthew', '2022-01-02T15:16:56', 1),
+       (2, '2. test group message', '2022-01-02T15:23:58', 2),
+       (3, '2. test group message od usera', '2022-01-03T15:52:12', 2);;
 
 insert into comment (event_id, creator_id, comment_body, creation_date)
-values (1, 1, 'o da ovo je komentar tuturutu', '2022-01-01'),
-       (2, 2, 'pipurutu', '2022-01-01'),
-       (3, 3, 'tuUUUUUUUUUU', '2022-01-01')
+values (1, 1, 'o da ovo je komentar tuturutu', '2022-01-01T15:27:10'),
+       (2, 2, 'pipurutu', '2022-01-01T15:27:11'),
+       (3, 3, 'tuUUUUUUUUUU', '2022-01-01T15:27:12')
