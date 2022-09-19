@@ -2,7 +2,6 @@ create table if not exists user
 (
     id             identity,
     username       varchar(10) unique not null,
-    image_location nvarchar,
     password       nvarchar           not null
 );
 
